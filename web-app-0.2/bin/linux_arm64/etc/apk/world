@@ -1,0 +1,8 @@
+alpine-baselayout
+alpine-keys
+apk-tools
+busybox
+curl
+libc-utils
+nodejs
+npm
