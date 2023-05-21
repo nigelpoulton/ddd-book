@@ -1,2 +1,0 @@
-#!/bin/sh
-exec /lib/ld-musl-armhf.so.1 --list "$@"
