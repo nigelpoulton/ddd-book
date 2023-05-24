@@ -1,26 +1,37 @@
-# Swarm doesn't yet support the Compose Spec, so we've pinned the file format to version 3.9
 # Un-comment the version field if you get an 'unsupported Compose file version: 1.0' ERROR
-version: '3.8'
+
+#version: '3.8'
 networks:
   counter-net:
     driver: overlay
-    driver-opts:
+    driver_opts:
       encrypted: 'yes'
-
 volumes:
   counter-vol:
-  
+
 services:
   web-fe:
     image: nigelpoulton/ddd-book:swarm-app
     command: python app.py
     deploy:
-      replicas: 10
-    ports:
-      - target: 8080
-        published: 5001
+      replicas: 4
+      update_config:
+        parallelism: 2
+        delay: 10s
+        failure_action: rollback
+      placement:
+        constraints:
+          - 'node.role == worker'
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
     networks:
       - counter-net
+    ports:
+      - published: 5001
+        target: 8080
     volumes:
       - type: volume
         source: counter-vol
