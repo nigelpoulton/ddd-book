@@ -7,7 +7,7 @@ networks:
 services:
     frontend:
       image: nigelpoulton/ddd-book:ai-fe
-      build: ./frontend
+#     build: ./frontend
       command: npm run start
       networks:
         - internal
@@ -22,7 +22,7 @@ services:
 
     backend:
       image: nigelpoulton/ddd-book:ai-be
-      build: ./backend
+#     build: ./backend
       networks:
         - internal
       ports:
