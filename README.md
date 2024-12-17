@@ -1,6 +1,6 @@
 # Docker Deep Dive
 
-This repos contains the apps and config files for the 2024 edition of [Docker Deep Dive](about:blank).
+This repos contains the apps and config files for the 2024 edition of [Docker Deep Dive](https://www.amazon.com/dp/1916585256).
 
 ### Folders and container images
 
