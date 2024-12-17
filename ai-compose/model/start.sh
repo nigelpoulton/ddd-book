@@ -11,7 +11,7 @@ for i in $(seq 1 30); do
     if curl -s http://localhost:11434/api/tags >/dev/null; then
         break
     fi
-    sleep 1
+sleep 1
 done
 
 # Check if the model exists; pull it only if it doesn't
@@ -21,6 +21,5 @@ if ! curl -s http://localhost:11434/api/tags | jq -e ".models[] | select(.name =
 else
     echo "${MODEL} model already exists"
 fi
-
 # Wait for the Ollama process
 wait $OLLAMA_PID
