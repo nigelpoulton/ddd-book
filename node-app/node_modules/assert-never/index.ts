@@ -1,3 +1,7 @@
+export function assertNever(value: never, errorMessage?: string): never
+export function assertNever(value: never, getErrorMessage?: (value: unknown) => string): never
+export function assertNever(value: never, noThrow?: boolean): never
+
 /**
  * Helper function for exhaustive checks of discriminated unions.
  * https://basarat.gitbooks.io/typescript/docs/types/discriminated-unions.html
@@ -23,8 +27,16 @@
  *      return assertNever(arg);
  *    }
  */
-export function assertNever(value: never, noThrow?: boolean): never {
-  if (noThrow) {
+export function assertNever(value: never, errorMessageOrNoThrow?: string | ((value: unknown) => string) | boolean): never {
+  if (typeof errorMessageOrNoThrow === 'string') {
+    throw new Error(errorMessageOrNoThrow)
+  }
+
+  if (typeof errorMessageOrNoThrow === 'function') {
+    throw new Error(errorMessageOrNoThrow(value))
+  }
+
+  if (errorMessageOrNoThrow) {
     return value
   }
 

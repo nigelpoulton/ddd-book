@@ -36,4 +36,4 @@ function doSomething(arg: Union) {
 
 [npm-image]: https://badge.fury.io/js/assert-never.svg
 [npm-url]: https://badge.fury.io/js/assert-never
-[exhaustive-checks]: https://basarat.gitbooks.io/typescript/docs/types/discriminated-unions.html#exhaustive-checks
+[exhaustive-checks]: https://basarat.gitbook.io/typescript/type-system/discriminated-unions#exhaustive-checks
