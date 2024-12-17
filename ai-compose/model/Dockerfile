@@ -1,7 +1,5 @@
 FROM ollama/ollama:0.5.2
 RUN apt-get update && apt-get install -y ca-certificates && apt-get install -y curl && apt-get install -y jq && rm -rf /var/lib/apt/lists/*
-# COPY /go/src/github.com/ollama/ollama/dist/linux-arm64/bin/ /bin/
-# COPY /go/src/github.com/ollama/ollama/dist/linux-arm64/lib/ /lib/
 ENV OLLAMA_HOST=0.0.0.0
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 COPY start.sh /usr/local/bin/start.sh
