@@ -6,8 +6,8 @@ networks:
 
 services:
     frontend:
-#      image: nigelpoulton/ddd-book:ai-fe
-      build: ./frontend
+      image: nigelpoulton/ddd-book:ai-fe
+#     build: ./frontend
       command: npm run start
       networks:
         - internal
@@ -21,8 +21,8 @@ services:
         - backend
 
     backend:
-#      image: nigelpoulton/ddd-book:ai-be
-      build: ./backend
+      image: nigelpoulton/ddd-book:ai-be
+#     build: ./backend
       networks:
         - internal
       ports:
@@ -35,6 +35,7 @@ services:
           condition: service_healthy
   
     model:
+#     image: nigelpoulton/ddd-book:ai-model
       build: ./model
       networks:
         - internal
