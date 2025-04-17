@@ -2,7 +2,7 @@ FROM python:3.12-alpine@sha256:38e179a0f0436c97ecc76bcd378d7293ab3ee79e4b8c440fd
 
 # Update openssl
 RUN apk add --no-cache \
- openssl=3.3.2-r1
+ openssl=3.3.3-r0
 
 # Create a non-root user and group
 RUN addgroup -S appuser-group && adduser -D -H -G appuser-group appuser
