@@ -1,0 +1,23 @@
+volumes:
+  open-webui:
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    environment:
+      - DEFAULT_MODELS=${MODEL_NAME}
+      - WEBUI_AUTH=False
+      - OPENAI_API_KEY=${OPENAI_KEY}
+      - OPENAI_API_BASE_URL=${MODEL_HOST}
+    volumes:
+      - open-webui:/app/backend/data
+    ports:
+      - "3001:8080"    
+    restart: always
+    depends_on:
+      - dmr    
+  dmr:
+    provider:
+      type: model
+      options:
+        model: ${MODEL_NAME}
+        host: ${MODEL_HOST}
