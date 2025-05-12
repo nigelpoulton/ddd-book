@@ -1,0 +1,34 @@
+networks:
+  counter-net:
+    driver: overlay
+    driver_opts:
+      encrypted: 'yes'
+volumes:
+  counter-vol:
+services:
+  web-fe:
+    image: nigelpoulton/ddd-book:swarm-app
+    command: python app.py
+    deploy:
+      replicas: 4
+      update_config:
+        parallelism: 2
+        delay: 10s
+        failure_action: rollback
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    networks:
+      - counter-net
+    ports:
+      - "5001:8080"
+  redis:
+    image: "redis:alpine"
+    networks:
+      counter-net:
+    volumes:
+      - type: volume
+        source: counter-vol
+        target: /app
