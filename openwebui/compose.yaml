@@ -20,4 +20,3 @@ services:
       type: model
       options:
         model: ${MODEL_NAME}
-        host: ${MODEL_HOST}
